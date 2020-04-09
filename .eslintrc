@@ -1,0 +1,40 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true,
+    "jasmine": true,
+    "jest/globals": true,
+    "browser": true
+  },
+  "extends": [
+    "eslint-config-airbnb-base",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:promise/recommended",
+    "plugin:node/recommended",
+    "plugin:jest/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "prettier",
+    "promise",
+    "jest"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "strict": 0,
+    "import/no-unresolved": 0,
+    "import/no-dynamic-require": 0,
+    "global-require": 0,
+    "no-plusplus": 0,
+    "no-unused-expressions": 0,
+    "node/no-unsupported-features/es-syntax": 0,
+    "node/no-unsupported-features/es-builtins": 0
+  }
+}

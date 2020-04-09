@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+TEMPLATE_PATH="$1"
+PROJECT_PATH=$(pwd)
+PROJECT_NAME=`basename $(pwd)`
+
+units=(".babelrc.js" \
+  ".eslintrc" \
+  ".eslintignore" \
+  ".gitignore" \
+  ".npmrc" \
+  ".prettierrc" \
+  ".vscode" \
+  ".huskyrc" \
+  ".lintstagedrc" \
+  "package-tpl.json" \
+  "src" \
+  "jest.config.js" \
+  "cz-customizable.js" \
+  "README-tpl.md")
+
+touch README.md
+git init
+git add README.md
+git commit -am 'chore(init): first sending'
+
+echo -e "\e[1;32m\n>> Git repo has been initialized\e[1;37m\n"
+
+echo -e "\e[1;32m>> Adding a new JS project based on ES6 defaults to ${PROJECT_PATH}...\n"
+
+alias cp="cp"
+
+for unit in "${units[@]}"
+do
+  echo -e "\e[0;37mCopying ${unit}..."
+  if [ $unit = "README-tpl.md" ]; then
+    cp -Rf ${TEMPLATE_PATH}/${unit} ${PROJECT_PATH}/README.md
+  elif [ $unit = "package-tpl.json" ]; then
+    cp -Rf ${TEMPLATE_PATH}/${unit} ${PROJECT_PATH}/package.json
+  else
+    cp -Rf ${TEMPLATE_PATH}/${unit} ${PROJECT_PATH}
+  fi
+done
+
+echo -e "\e[1;32m\n>> Files has been successfully copied to ${PROJECT_PATH}\n"
+
+rewrites=("package.json" "README.md")
+
+for rewrite in "${rewrites[@]}"
+do
+  echo -e "\e[0;37mRewriting ${rewrite}..."
+  sed -i '' -e "s|XXX|${PROJECT_NAME}|g" "${PROJECT_PATH}/${rewrite}"
+done
+
+echo -e "\e[1;32m\n>> Files has been successfully rewrited in ${PROJECT_PATH}\n"
+
+npm install
+
+echo -e "\e[1;32m\n>> Packages have been installed\e[0;37m\n"
+
+git init
+git add .
+git commit -am 'chore(init): first update'
+
+echo -e "\e[1;32m\n>> Git repo has been updated\e[1;37m\n"
+
+ls -la
+
+echo -e "\e[1;32m\n>> Project has been sucessfully created\e[1;37m\n"
+
+alias cp="cp -i"

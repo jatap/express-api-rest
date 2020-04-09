@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-TEMPLATE_PATH="$1"
+TEMPLATE_PATH="$1/generator"
 PROJECT_PATH=$(pwd)
 PROJECT_NAME=`basename $(pwd)`
 
@@ -13,11 +13,12 @@ units=(".babelrc.js" \
   ".vscode" \
   ".huskyrc" \
   ".lintstagedrc" \
-  "package-tpl.json" \
-  "src" \
+  "package.json" \
+  "server" \
   "jest.config.js" \
   "cz-customizable.js" \
-  "README-tpl.md")
+  "nodemon.json" \
+  "README.md")
 
 touch README.md
 git init
@@ -26,16 +27,16 @@ git commit -am 'chore(init): first sending'
 
 echo -e "\e[1;32m\n>> Git repo has been initialized\e[1;37m\n"
 
-echo -e "\e[1;32m>> Adding a new JS project based on ES6 defaults to ${PROJECT_PATH}...\n"
+echo -e "\e[1;32m>> Adding a new Express API REST project based on ES6 defaults to ${PROJECT_PATH}...\n"
 
 alias cp="cp"
 
 for unit in "${units[@]}"
 do
   echo -e "\e[0;37mCopying ${unit}..."
-  if [ $unit = "README-tpl.md" ]; then
+  if [ $unit = "README.md" ]; then
     cp -Rf ${TEMPLATE_PATH}/${unit} ${PROJECT_PATH}/README.md
-  elif [ $unit = "package-tpl.json" ]; then
+  elif [ $unit = "package.json" ]; then
     cp -Rf ${TEMPLATE_PATH}/${unit} ${PROJECT_PATH}/package.json
   else
     cp -Rf ${TEMPLATE_PATH}/${unit} ${PROJECT_PATH}
@@ -44,7 +45,7 @@ done
 
 echo -e "\e[1;32m\n>> Files has been successfully copied to ${PROJECT_PATH}\n"
 
-rewrites=("package.json" "README.md")
+rewrites=("package.json" "README.md" "server/index.js")
 
 for rewrite in "${rewrites[@]}"
 do

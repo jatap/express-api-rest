@@ -1,0 +1,27 @@
+# Node
+node_modules/
+
+# Reports
+reports/
+
+# Build folders
+.compiled/
+
+# IDE's
+.idea/
+*.iml
+.project
+*.sublime-*
+!.vscode
+.tern-port
+
+# Other
+.tmp
+.DS_Store
+.npm_install_log
+npm-debug.log
+.netrwhist
+.env
+
+# auto-generated tag files
+tags

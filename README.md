@@ -1,6 +1,6 @@
-# ES6 Template Generator
+# Express API REST
 
-Template to generate new ES6 projects
+Template to generate new Express API REST
 
 ## Table of Contents
 
@@ -25,6 +25,7 @@ Template to generate new ES6 projects
 - Debug
 - Commitizen
 - Standard Version
+- Config
 
 ## Usage
 
@@ -69,7 +70,7 @@ Support for debug in VSCode
 
 ## References
 
-- [ES6 Cli Template Generator](https://github.com/jatap/es6-cli-template-generator)
+- [Express API REST](https://bitbucket.org/jatap/express-api-rest)
 
 ## TODO
 

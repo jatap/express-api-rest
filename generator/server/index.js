@@ -3,7 +3,7 @@ import debugLib from 'debug';
 import config from 'config';
 import app from './app';
 
-const debug = debugLib('express-generator:server');
+const debug = debugLib('XXX:server');
 
 // Get port from environment and store in Express.
 const { port } = config;

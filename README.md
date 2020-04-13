@@ -32,7 +32,7 @@ Template to generate new Express API REST
 Clone the project
 
 ```bash
-$ git clone git@github.com:jatap/es6-template-generator.git
+$ git clone git@bitbucket.org:jatap/express-api-rest.git
 ```
 
 Create a new function in your ```~/.zshrc``` or ```~/.bashrc``` to source ```init``` file
@@ -40,7 +40,7 @@ Create a new function in your ```~/.zshrc``` or ```~/.bashrc``` to source ```ini
 ```bash
 # ~/.zshrc or ~/.bashrc
 
-function new_es6_project() {
+function new_express_api_rest() {
   source <cloned_project>/init <cloned_project>
 }
 ```
@@ -48,13 +48,13 @@ function new_es6_project() {
 Create a new folder
 
 ```bash
-$ mkdir new_amazing_e6_package && cd $_
+$ mkdir new_express_api_rest && cd $_
 ```
 
-Execute ES6 Template Generator
+Execute Express API REST
 
 ```bash
-$ new_es6_project
+$ new_express_api_rest
 ```
 
 ## IDE Support

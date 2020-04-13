@@ -15,6 +15,7 @@ units=(".babelrc.js" \
   ".lintstagedrc" \
   "package.json" \
   "server" \
+  "config" \
   "jest.config.js" \
   "cz-customizable.js" \
   "nodemon.json" \
@@ -59,7 +60,6 @@ npm install
 
 echo -e "\e[1;32m\n>> Packages have been installed\e[0;37m\n"
 
-git init
 git add .
 git commit -am 'chore(init): first update'
 

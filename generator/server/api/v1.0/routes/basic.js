@@ -5,7 +5,7 @@ const router = express.Router();
 
 /* eslint-disable prefer-const */
 router.get('/error', (req, res, next) => {
-  let err = Boom.internal();
+  const err = Boom.internal();
   next(err);
 });
 

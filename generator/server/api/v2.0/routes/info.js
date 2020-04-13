@@ -3,7 +3,7 @@ import express from 'express';
 const router = express.Router();
 
 const data = {
-  version: '2.0',
+  version: 'v2.0',
   date: new Date().toString(),
   info: 'Hello v2.0 GET API',
 };

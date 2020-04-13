@@ -1,9 +1,9 @@
 import http from 'http';
 import debugLib from 'debug';
+import config from 'config';
 import app from './app';
-import config from './config';
 
-const debug = debugLib('XXX:server');
+const debug = debugLib('express-generator:server');
 
 // Get port from environment and store in Express.
 const { port } = config;

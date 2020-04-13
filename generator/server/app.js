@@ -17,27 +17,16 @@ app.use('/api', api);
 
 app.use((req, res, next) => {
   /* eslint-disable prefer-const */
-  let err = Boom.notFound(`${req.method} ${req.url} Not Found`);
+  const err = Boom.notFound(`${req.method} ${req.url} Not Found`);
   next(err);
 });
 
 /* eslint-disable no-unused-vars */
 app.use((err, req, res, next) => {
-  if (Boom.isBoom(err)) {
-    console.error(err.output.payload);
+  console.error(err.output.payload);
 
-    res.status(err.output.payload.statusCode || 500);
-    res.json(err.output.payload);
-  } else {
-    console.error(`*** Error [${err.status}]: "${err.message}" ***`);
-
-    res.status(err.status || 500);
-    res.json({
-      error: {
-        message: err.message,
-      },
-    });
-  }
+  res.status(err.output.payload.statusCode || 500);
+  res.json(err.output.payload);
 });
 
 export default app;

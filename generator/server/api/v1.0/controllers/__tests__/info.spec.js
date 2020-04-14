@@ -5,7 +5,7 @@ describe('v2.0 Info Routes with mocks', () => {
     const mockReq = () => {
       const req = {};
 
-      req.originalUrl = '/api/v2.0';
+      req.originalUrl = '/api/v1.0';
 
       return req;
     };

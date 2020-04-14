@@ -1,16 +1,11 @@
 import express from 'express';
+import { getInfo } from '../controllers/info';
 
 const router = express.Router();
 
-const data = {
-  version: 'v2.0',
-  date: new Date().toString(),
-  info: 'Hello v2.0 GET API',
-};
-
 /* eslint-disable no-unused-vars */
 router.get('/', (req, res, next) => {
-  res.send(data);
+  getInfo(req, res, next);
 });
 
 export default router;

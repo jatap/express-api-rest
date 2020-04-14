@@ -9,4 +9,12 @@ describe('v2.0 Basic Routes', () => {
     expect(res.body.error).toBe('Internal Server Error');
     expect(res.body.message).toBe('An internal server error occurred');
   });
+
+  test('forbidden', async () => {
+    const res = await request(app).get('/api/v2.0/forbidden');
+
+    expect(res.status).toBe(403);
+    expect(res.body.error).toBe('Forbidden');
+    expect(res.body.message).toBe('Forbidden');
+  });
 });

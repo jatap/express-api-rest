@@ -1,12 +1,14 @@
 import express from 'express';
-import Boom from '@hapi/boom';
+import { getError, getForbidden } from '../controllers/basic';
 
 const router = express.Router();
 
-/* eslint-disable prefer-const */
 router.get('/error', (req, res, next) => {
-  const err = Boom.internal();
-  next(err);
+  getError(req, res, next);
+});
+
+router.get('/forbidden', (req, res, next) => {
+  getForbidden(req, res, next);
 });
 
 export default router;

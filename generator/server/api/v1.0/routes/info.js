@@ -5,7 +5,7 @@ const router = express.Router();
 
 /* eslint-disable no-unused-vars */
 router.get('/', (req, res, next) => {
-  getInfo(req, res, next);
+  getInfo(req, res);
 });
 
 export default router;

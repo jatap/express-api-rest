@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import Boom from '@hapi/boom';
 import cors from 'cors';
+import compression from 'compression';
 import api from './api';
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
+app.use(compression());
 
 app.use('/api', api);
 

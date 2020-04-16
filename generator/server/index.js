@@ -1,5 +1,6 @@
 import http from 'http';
 import debugLib from 'debug';
+import dotenv from 'dotenv/config';
 import config from 'config';
 import app from './app';
 

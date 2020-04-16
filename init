@@ -5,6 +5,7 @@ PROJECT_PATH=$(pwd)
 PROJECT_NAME=`basename $(pwd)`
 
 units=(".babelrc.js" \
+  ".env.sample" \
   ".eslintrc" \
   ".eslintignore" \
   ".gitignore" \
@@ -59,6 +60,14 @@ echo -e "\e[1;32m\n>> Files has been successfully rewrited in ${PROJECT_PATH}\n"
 npm install
 
 echo -e "\e[1;32m\n>> Packages have been installed\e[0;37m\n"
+
+cp .env.sample .env
+
+echo -e "\e[1;32m\n>> Generated .env file from .env.sample file\e[0;37m\n"
+
+npm run generate:salt
+
+echo -e "\e[1;32m\n>> Generated hash_salt environment variable\e[0;37m\n"
 
 git add .
 git commit -am 'chore(init): first update'

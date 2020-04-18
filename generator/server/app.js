@@ -25,10 +25,21 @@ app.use((req, res, next) => {
 
 /* eslint-disable no-unused-vars */
 app.use((err, req, res, next) => {
-  console.error(err.output.payload);
+  if (Boom.isBoom(err)) {
+    console.error(err.output.payload);
 
-  res.status(err.output.payload.statusCode || 500);
-  res.json(err.output.payload);
+    res.status(err.output.payload.statusCode || 500);
+    res.json(err.output.payload);
+  } else {
+    console.error(`*** Error [${err.status}]: "${err.message}" ***`);
+
+    res.status(err.status || 500);
+    res.json({
+      error: {
+        message: err.message,
+      },
+    });
+  }
 });
 
 export default app;

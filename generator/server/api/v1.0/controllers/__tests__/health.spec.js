@@ -1,11 +1,11 @@
-import { getInfo } from '../info';
+import { getHealth } from '../health';
 
-describe('v2.0 Info Routes with mocks', () => {
-  test('info', async () => {
+describe('Health controller with mocks', () => {
+  test('health', async () => {
     const mockReq = () => {
       const req = {};
 
-      req.originalUrl = '/api/v1.0';
+      req.originalUrl = '/api/v1.0/health';
 
       return req;
     };
@@ -21,7 +21,7 @@ describe('v2.0 Info Routes with mocks', () => {
     };
     const res = mockRes();
 
-    await getInfo(req, res);
+    await getHealth(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalled();

@@ -1,8 +1,8 @@
 import express from 'express';
-import v1 from './v1.0';
+import routes from './health.routes';
 
 const router = express.Router();
 
-router.use('/v1.0', v1);
+router.use(routes);
 
 export default router;

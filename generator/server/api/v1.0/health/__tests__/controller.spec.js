@@ -1,4 +1,4 @@
-import { getHealth } from '../health.controller';
+import { getHealth } from '../controller';
 
 describe('Health controller with mocks', () => {
   test('health', async () => {

@@ -41,7 +41,7 @@
   },
   "overrides": [
     {
-      "files": ["**/**.spec.js"],
+      "files": ["**/**.spec.js", "tests/db-handler.js"],
       "rules": {
         "node/no-unpublished-import": 0
       }

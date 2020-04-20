@@ -1,1 +1,4 @@
-{}
+{
+  "apiUri": "/api",
+  "version": "v1.0"
+}

@@ -42,6 +42,7 @@
   },
   "dependencies": {
     "@hapi/boom": "^9.1.0",
+    "bodymen": "^1.1.1",
     "compression": "^1.7.4",
     "config": "^3.3.1",
     "cookie-parser": "~1.4.4",
@@ -50,8 +51,10 @@
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "http-status-codes": "^1.4.0",
+    "mongoose": "^5.9.9",
     "morgan": "~1.9.1",
     "npm-run-all": "^4.1.5",
+    "querymen": "^2.1.4",
     "rimraf": "^3.0.2",
     "uuid": "^7.0.3"
   },
@@ -80,6 +83,7 @@
     "jest": "^25.2.2",
     "jest-extended": "^0.11.5",
     "lint-staged": "^10.0.9",
+    "mongodb-memory-server": "^6.5.2",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.2",
     "standard-version": "^7.1.0",

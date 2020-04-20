@@ -2,7 +2,7 @@
   "verbose": true,
   "exec": "npm run dev",
   "watch": ["server/*"],
-  "ignore": ["**/__tests__/**", "*.test.js", "*.spec.js"],
+  "ignore": ["**/tests/**", "*.test.js", "*.spec.js"],
   "events": {
     "start": "clear"
   }

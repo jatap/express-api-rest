@@ -1,3 +1,10 @@
 {
-  "salt": "HASH_SALT"
+  "salt": "HASH_SALT",
+  "mongo": {
+    "host": "MONGODB_HOST",
+    "port": "MONGODB_PORT",
+    "database": "MONGODB_DATABASE",
+    "username": "MONGODB_USERNAME",
+    "password": "MONGODB_PASSWORD"
+  }
 }

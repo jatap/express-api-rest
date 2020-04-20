@@ -1,3 +1,10 @@
 {
-  "port": 3000
+  "port": 3000,
+  "mongo": {
+    "options": {
+      "useUnifiedTopology": true,
+      "useNewUrlParser": true,
+      "useCreateIndex": true
+    }
+  }
 }

@@ -1,3 +1,4 @@
+import HttpStatus from 'http-status-codes';
 import { getHealth } from '../controller';
 
 describe('Health controller with mocks', () => {
@@ -23,7 +24,7 @@ describe('Health controller with mocks', () => {
 
     await getHealth(req, res);
 
-    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.status).toHaveBeenCalledWith(HttpStatus.OK);
     expect(res.json).toHaveBeenCalled();
   });
 });

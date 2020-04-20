@@ -4,6 +4,7 @@ import logger from 'morgan';
 import Boom from '@hapi/boom';
 import cors from 'cors';
 import compression from 'compression';
+import HttpStatus from 'http-status-codes';
 import api from './api';
 
 const app = express();
@@ -28,12 +29,15 @@ app.use((err, req, res, next) => {
   if (Boom.isBoom(err)) {
     console.error(err.output.payload);
 
-    res.status(err.output.payload.statusCode || 500);
+    res.status(
+      err.output.payload.statusCode || HttpStatus.INTERNAL_SERVER_ERROR,
+    );
+
     res.json(err.output.payload);
   } else {
     console.error(`*** Error [${err.status}]: "${err.message}" ***`);
 
-    res.status(err.status || 500);
+    res.status(err.status || HttpStatus.INTERNAL_SERVER_ERROR);
     res.json({
       error: {
         message: err.message,

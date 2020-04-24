@@ -30,25 +30,22 @@ export const updateFull = ({ bodymen: { body }, params }, res, next) =>
     .then(success(res))
     .catch(next);
 
-export const updatePartial = ({ bodymen: { body }, params }, res, next) =>
+export const updatePartial = (req, res, next) => {
+  const { body, params } = req;
+
   Users.findById(params.id)
     .then(notFound(res))
-    .then((users) => {
-      if (users) {
-        Object.keys(body).forEach((key) => {
-          if (!body[key]) {
-            /* eslint-disable no-param-reassign */
-            delete body[key];
-          }
-        });
-        return Object.assign(users, body).save();
+    .then((user) => {
+      if (user) {
+        return Object.assign(user, body).save();
       }
 
       return null;
     })
-    .then((users) => (users ? users.view(true) : null))
+    .then((user) => (user ? user.view(true) : null))
     .then(success(res))
     .catch(next);
+};
 
 export const destroy = ({ params }, res, next) =>
   Users.findById(params.id)

@@ -12,17 +12,17 @@ import {
 import { schema } from './model';
 
 const router = new Router();
-const { name, email } = schema.tree;
+const { name, email, password } = schema.tree;
 
-router.post('/', body({ name, email }), create);
+router.post('/', body({ name, email, password }), create);
 
 router.get('/', query(), index);
 
 router.get('/:id', show);
 
-router.put('/:id', body({ name, email }), updateFull);
+router.put('/:id', body({ name, email, password }), updateFull);
 
-router.patch('/:id', body({ name, email }), updatePartial);
+router.patch('/:id', updatePartial);
 
 router.delete('/:id', destroy);
 

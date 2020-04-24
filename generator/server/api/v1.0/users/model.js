@@ -1,12 +1,27 @@
 import mongoose, { Schema } from 'mongoose';
+import isEmail from 'validator/lib/isEmail';
+import bcrypt from 'bcryptjs';
 
 const usersSchema = new Schema(
   {
     name: {
       type: String,
+      required: true,
+      trim: true,
     },
     email: {
       type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+      validate: {
+        validator: (value) => isEmail(value),
+      },
+    },
+    password: {
+      type: String,
+      required: true,
+      minLength: 7,
     },
   },
   {
@@ -21,6 +36,15 @@ const usersSchema = new Schema(
   },
 );
 
+/* eslint-disable func-names */
+usersSchema.pre('save', async function (next) {
+  if (this.isModified('password')) {
+    this.password = await bcrypt.hash(this.password, 8);
+  }
+
+  next();
+});
+
 usersSchema.methods = {
   view(full) {
     const view = {
@@ -28,6 +52,7 @@ usersSchema.methods = {
       id: this.id,
       name: this.name,
       email: this.email,
+      password: this.password,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };

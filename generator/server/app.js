@@ -54,15 +54,11 @@ app.use((err, req, res, next) => {
   } else {
     /* istanbul ignore next */
     if (config.util.getEnv('NODE_ENV') !== 'test') {
-      console.error(`*** Error [${err.status}]: "${err.message}" ***`);
+      console.error(`*** Error: "${err}" ***`);
     }
 
     res.status(err.status || HttpStatus.INTERNAL_SERVER_ERROR);
-    res.json({
-      error: {
-        message: err.message,
-      },
-    });
+    res.json({ error: err });
   }
 });
 

@@ -47,12 +47,13 @@ done
 
 echo -e "\e[1;32m\n>> Files has been successfully copied to ${PROJECT_PATH}\n"
 
-rewrites=("package.json" "README.md" "server/index.js")
+rewrites=("package.json" "README.md" "server/index.js" ".env.sample")
 
 for rewrite in "${rewrites[@]}"
 do
   echo -e "\e[0;37mRewriting ${rewrite}..."
   sed -i '' -e "s|XXX|${PROJECT_NAME}|g" "${PROJECT_PATH}/${rewrite}"
+  sed -i '' -e "s|ZZZ|${PROJECT_NAME}|g" "${PROJECT_PATH}/${rewrite}"
 done
 
 echo -e "\e[1;32m\n>> Files has been successfully rewrited in ${PROJECT_PATH}\n"

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const { v4: uuidv4 } = require('uuid');
+const crypto = require('crypto');
 
 const sampleEnvFile = '.env.sample';
 const envFile = '.env';
@@ -13,5 +13,9 @@ fs.open(envFile, 'w', (err, fd) => {
   }
 
   // Replace HASH_SALT
-  fs.writeFileSync(fd, sampleEnv.replace(/XXX/, uuidv4()), 'utf8');
+  fs.writeFileSync(
+    fd,
+    sampleEnv.replace(/YYY/, crypto.randomBytes(64).toString('hex')),
+    'utf8',
+  );
 });

@@ -41,7 +41,6 @@
     "test:dev": "jest --watch --coverage --updateSnapshot || true"
   },
   "dependencies": {
-    "@hapi/boom": "^9.1.0",
     "bcryptjs": "^2.4.3",
     "bodymen": "^1.1.1",
     "compression": "^1.7.4",

@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import config from 'config';
 import InvalidUserError from './errors';
 
-const usersSchema = new Schema(
+const userSchema = new Schema(
   {
     name: {
       type: String,
@@ -48,7 +48,7 @@ const usersSchema = new Schema(
 );
 
 /* eslint-disable func-names */
-usersSchema.pre('save', async function (next) {
+userSchema.pre('save', async function (next) {
   if (this.isModified('password')) {
     this.password = await bcrypt.hash(this.password, 8);
   }
@@ -56,7 +56,7 @@ usersSchema.pre('save', async function (next) {
   next();
 });
 
-usersSchema.methods = {
+userSchema.methods = {
   view(full) {
     const view = {
       // simple view
@@ -93,7 +93,7 @@ usersSchema.methods = {
   },
 };
 
-usersSchema.statics = {
+userSchema.statics = {
   async findByCredentials(email, password) {
     const user = await this.findOne({ email });
 
@@ -110,7 +110,7 @@ usersSchema.statics = {
   },
 };
 
-const model = mongoose.model('Users', usersSchema);
+const model = mongoose.model('User', userSchema);
 
 export const { schema } = model;
 export default model;

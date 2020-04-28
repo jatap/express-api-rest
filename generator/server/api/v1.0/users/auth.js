@@ -1,14 +1,14 @@
 import HttpStatus from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import Users from './model';
+import User from './model';
 
 const auth = async (req, res, next) => {
   try {
     const token = req.header('Authorization').replace('Bearer ', '');
     const data = jwt.verify(token, config.get('auth.salt'));
     /* eslint-disable no-underscore-dangle */
-    const user = await Users.findOne({ _id: data._id, 'tokens.token': token });
+    const user = await User.findOne({ _id: data._id, 'tokens.token': token });
 
     /* istanbul ignore next */
     if (!user) {

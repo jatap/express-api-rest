@@ -1,12 +1,12 @@
 import HttpStatus from 'http-status-codes';
 /* eslint-disable promise/no-callback-in-promise */
 import { success, notFound } from '../../../services/response';
-import Users from './model';
+import User from './model';
 import InvalidUserError from './errors';
 
 export const register = ({ bodymen: { body } }, res, next) => {
   try {
-    return Users.create(body)
+    return User.create(body)
       .then(async (user) => {
         const token = await user.generateAuthToken();
         return { user, token };
@@ -22,7 +22,7 @@ export const register = ({ bodymen: { body } }, res, next) => {
 export const login = async ({ bodymen: { body } }, res) => {
   try {
     const { email, password } = body;
-    const user = await Users.findByCredentials(email, password);
+    const user = await User.findByCredentials(email, password);
     const token = await user.generateAuthToken();
 
     return res.send({ user, token });
@@ -67,17 +67,17 @@ export const logoutAll = async (req, res) => {
 };
 
 export const updateFull = ({ bodymen: { body }, params }, res, next) =>
-  Users.findById(params.id)
+  User.findById(params.id)
     .then(notFound(res))
-    .then((users) => (users ? Object.assign(users, body).save() : null))
-    .then((users) => (users ? users.view(true) : null))
+    .then((user) => (user ? Object.assign(user, body).save() : null))
+    .then((user) => (user ? user.view(true) : null))
     .then(success(res))
     .catch(next);
 
 export const updatePartial = (req, res, next) => {
   const { body, params } = req;
 
-  Users.findById(params.id)
+  User.findById(params.id)
     .then(notFound(res))
     .then((user) => {
       if (user) {

@@ -4,7 +4,7 @@ import HttpStatus from 'http-status-codes';
 import dotenv from 'dotenv/config';
 import { apiUri, version } from 'config';
 import app from '../../../../app';
-import Users from '../model';
+import User from '../model';
 import {
   connect,
   closeDatabase,
@@ -12,8 +12,6 @@ import {
 } from '../../../../../tests/db-handler';
 
 const apiRoot = `${apiUri}/${version}/users`;
-
-let users;
 
 beforeAll(async () => connect());
 
@@ -35,11 +33,9 @@ describe('/users', () => {
   });
 
   test('POST /login sucessful', async () => {
-    users = await Users.create({
-      name: 'test',
-      password: '1234567',
-      email: 'test@test.com',
-    });
+    await request(app)
+      .post(`${apiRoot}/register`)
+      .send({ name: 'test', password: '1234567', email: 'test@test.com' });
 
     const { body } = await request(app)
       .post(`${apiRoot}/login`)
@@ -60,11 +56,9 @@ describe('/users', () => {
   });
 
   test('POST /login wrong password', async () => {
-    users = await Users.create({
-      name: 'test',
-      password: '1234567',
-      email: 'test@test.com',
-    });
+    await request(app)
+      .post(`${apiRoot}/register`)
+      .send({ name: 'test', password: '1234567', email: 'test@test.com' });
 
     const { status } = await request(app)
       .post(`${apiRoot}/login`)
@@ -74,11 +68,9 @@ describe('/users', () => {
   });
 
   test('POST /login wrong email', async () => {
-    users = await Users.create({
-      name: 'test',
-      password: '1234567',
-      email: 'test@test.com',
-    });
+    await request(app)
+      .post(`${apiRoot}/register`)
+      .send({ name: 'test', password: '1234567', email: 'test@test.com' });
 
     const { status } = await request(app)
       .post(`${apiRoot}/login`)
@@ -97,7 +89,7 @@ describe('/users', () => {
       .post(`${apiRoot}/profile/logout`)
       .set('Authorization', `Bearer ${token}`);
 
-    const userAfter = await Users.find({ email: 'test@test.com' });
+    const userAfter = await User.find({ email: 'test@test.com' });
     expect(logoutResponse.body).toBeObject();
     expect(logoutResponse.body).toBeEmpty();
     expect(userAfter[0].tokens).toBeArrayOfSize(0);
@@ -117,14 +109,14 @@ describe('/users', () => {
       .post(`${apiRoot}/login`)
       .send({ password: '1234567', email: 'test@test.com' });
 
-    const userBefore = await Users.find({ email: 'test@test.com' });
+    const userBefore = await User.find({ email: 'test@test.com' });
     expect(userBefore[0].tokens).toBeArrayOfSize(3);
 
     const logoutResponse = await request(app)
       .post(`${apiRoot}/profile/logoutall`)
       .set('Authorization', `Bearer ${token}`);
 
-    const userAfter = await Users.find({ email: 'test@test.com' });
+    const userAfter = await User.find({ email: 'test@test.com' });
     expect(logoutResponse.body).toBeObject();
     expect(userAfter[0].tokens).toBeArrayOfSize(0);
   });

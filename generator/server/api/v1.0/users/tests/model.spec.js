@@ -1,5 +1,5 @@
 /* eslint-disable no-return-await */
-import Users from '../model';
+import User from '../model';
 import {
   connect,
   closeDatabase,
@@ -11,7 +11,7 @@ let user;
 beforeAll(async () => await connect());
 
 beforeEach(async () => {
-  user = await Users.create({
+  user = await User.create({
     name: 'test',
     password: '1234567',
     email: 'test@test.com',
@@ -81,19 +81,19 @@ describe('pre save hook to encrypt password', () => {
 describe('statics', () => {
   describe('findByCredentials', () => {
     test('user exists', async () => {
-      const userIn = await Users.findByCredentials(user.email, '1234567');
+      const userIn = await User.findByCredentials(user.email, '1234567');
       expect(userIn).toBeTruthy();
     });
 
     test('user does not exists', async () => {
       await expect(
-        Users.findByCredentials('invalid.user@test.com', '1234567'),
+        User.findByCredentials('invalid.user@test.com', '1234567'),
       ).rejects.toThrow(/Invalid login credentials/);
     });
 
     test('password does not match', async () => {
       await expect(
-        Users.findByCredentials(user.email, '1234567XX'),
+        User.findByCredentials(user.email, '1234567XX'),
       ).rejects.toThrow(/Invalid login credentials/);
     });
   });

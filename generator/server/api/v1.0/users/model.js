@@ -1,6 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 import isEmail from 'validator/lib/isEmail';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import config from 'config';
+import InvalidUserError from './errors';
 
 const usersSchema = new Schema(
   {
@@ -23,6 +26,14 @@ const usersSchema = new Schema(
       required: true,
       minLength: 7,
     },
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   {
     timestamps: true,
@@ -53,6 +64,7 @@ usersSchema.methods = {
       name: this.name,
       email: this.email,
       password: this.password,
+      tokens: this.tokens,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };
@@ -63,6 +75,38 @@ usersSchema.methods = {
           // add properties for a full view
         }
       : view;
+  },
+  async comparePassword(candidatePassword) {
+    const isMatch = await bcrypt.compare(candidatePassword, this.password);
+    return isMatch;
+  },
+  async generateAuthToken() {
+    const user = this;
+    const token = jwt.sign({ _id: user._id }, config.get('auth.salt'), {
+      expiresIn: config.get('auth.ttl'),
+    });
+
+    user.tokens = user.tokens.concat({ token });
+    await user.save();
+
+    return token;
+  },
+};
+
+usersSchema.statics = {
+  async findByCredentials(email, password) {
+    const user = await this.findOne({ email });
+
+    if (!user) {
+      throw new InvalidUserError();
+    }
+
+    const isPasswordMatch = await user.comparePassword(password);
+    if (!isPasswordMatch) {
+      throw new InvalidUserError();
+    }
+
+    return user;
   },
 };
 

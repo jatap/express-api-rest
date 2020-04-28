@@ -1,4 +1,7 @@
 {
+  "auth": {
+    "ttl": "1800s"
+  },
   "port": 3000,
   "mongo": {
     "options": {

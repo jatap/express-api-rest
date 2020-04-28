@@ -1,5 +1,7 @@
 {
-  "salt": "HASH_SALT",
+  "auth": {
+    "salt": "HASH_SALT"
+  },
   "mongo": {
     "host": "MONGODB_HOST",
     "port": "MONGODB_PORT",

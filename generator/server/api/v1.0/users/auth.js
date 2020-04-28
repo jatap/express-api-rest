@@ -1,7 +1,7 @@
 import HttpStatus from 'http-status-codes';
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import Users from '../../api/v1.0/users/model';
+import Users from './model';
 
 const auth = async (req, res, next) => {
   try {

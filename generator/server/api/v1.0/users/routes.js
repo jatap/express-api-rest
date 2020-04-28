@@ -14,7 +14,7 @@ import {
   logoutAll,
 } from './controller';
 import { schema } from './model';
-import auth from '../../../services/auth';
+import auth from './auth';
 
 const router = new Router();
 const { name, email, password } = schema.tree;

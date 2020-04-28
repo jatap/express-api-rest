@@ -1,12 +1,12 @@
 import request from 'supertest';
 import HttpStatus from 'http-status-codes';
 import { apiUri, version } from 'config';
-import app from '../../app';
+import app from '../../../../app';
 import {
   connect,
   closeDatabase,
   clearDatabase,
-} from '../../../tests/db-handler';
+} from '../../../../../tests/db-handler';
 
 const apiRoot = `${apiUri}/${version}/users`;
 

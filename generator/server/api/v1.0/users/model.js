@@ -3,7 +3,7 @@ import isEmail from 'validator/lib/isEmail';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import config from 'config';
-import InvalidUserError from './errors';
+import InvalidLoginCredentials from './errors/invalid-login-credentials';
 
 const userSchema = new Schema(
   {
@@ -98,12 +98,12 @@ userSchema.statics = {
     const user = await this.findOne({ email });
 
     if (!user) {
-      throw new InvalidUserError();
+      throw new InvalidLoginCredentials();
     }
 
     const isPasswordMatch = await user.comparePassword(password);
     if (!isPasswordMatch) {
-      throw new InvalidUserError();
+      throw new InvalidLoginCredentials();
     }
 
     return user;

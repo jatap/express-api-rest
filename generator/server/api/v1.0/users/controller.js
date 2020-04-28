@@ -2,7 +2,7 @@ import HttpStatus from 'http-status-codes';
 /* eslint-disable promise/no-callback-in-promise */
 import { success, notFound } from '../../../services/response';
 import User from './model';
-import InvalidUserError from './errors';
+import InvalidLoginCredentials from './errors/invalid-login-credentials';
 
 export const register = ({ bodymen: { body } }, res, next) => {
   try {
@@ -15,7 +15,7 @@ export const register = ({ bodymen: { body } }, res, next) => {
       .catch(next);
   } catch (error) {
     /* istanbul ignore next */
-    return res.status(HttpStatus.BAD_REQUEST).send(error.message);
+    return res.status(HttpStatus.BAD_REQUEST).json({ error: error.message });
   }
 };
 
@@ -27,12 +27,12 @@ export const login = async ({ bodymen: { body } }, res) => {
 
     return res.send({ user, token });
   } catch (error) {
-    if (error instanceof InvalidUserError) {
-      return res.status(HttpStatus.UNAUTHORIZED).send(error.message);
+    if (error instanceof InvalidLoginCredentials) {
+      return res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
     }
 
     /* istanbul ignore next */
-    return res.status(HttpStatus.BAD_REQUEST).send(error.message);
+    return res.status(HttpStatus.BAD_REQUEST).json({ error: error.message });
   }
 };
 
@@ -49,7 +49,7 @@ export const logout = async (req, res) => {
     res.send();
   } catch (error) {
     /* istanbul ignore next */
-    res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message });
   }
 };
 
@@ -62,7 +62,7 @@ export const logoutAll = async (req, res) => {
     res.send();
   } catch (error) {
     /* istanbul ignore next */
-    res.status(HttpStatus.INTERNAL_SERVER_ERROR).send(error);
+    res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message });
   }
 };
 

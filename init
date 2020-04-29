@@ -17,6 +17,7 @@ units=(".babelrc.js" \
   "package.json" \
   "server" \
   "config" \
+  "tests" \
   "jest.config.js" \
   "cz-customizable.js" \
   "nodemon.json" \

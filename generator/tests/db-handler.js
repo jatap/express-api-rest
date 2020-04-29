@@ -6,7 +6,8 @@ const mongod = new MongoMemoryServer();
 
 mongoose.Promise = Promise;
 
-export const connect = async () => {
+global.dbCconnect = async () => {
+global.dbConnect = async () => {
   const uri = await mongod.getConnectionString();
 
   await mongoose.connect(uri, config.mongo.options);
@@ -16,13 +17,13 @@ export const connect = async () => {
   });
 };
 
-export const closeDatabase = async () => {
+global.dbClose = async () => {
   await mongoose.connection.dropDatabase();
   await mongoose.connection.close();
   await mongod.stop();
 };
 
-export const clearDatabase = async () => {
+global.dbClear = async () => {
   const { collections } = mongoose.connection;
 
   Object.keys(collections).forEach(async (key) => {

@@ -5,19 +5,14 @@ import dotenv from 'dotenv/config';
 import { apiUri, version } from 'config';
 import app from '../../../../app';
 import User from '../model';
-import {
-  connect,
-  closeDatabase,
-  clearDatabase,
-} from '../../../../../tests/db-handler';
 
 const apiRoot = `${apiUri}/${version}/users`;
 
-beforeAll(async () => connect());
+beforeAll(async () => dbConnect());
 
-afterEach(async () => clearDatabase());
+afterEach(async () => dbClear());
 
-afterAll(async () => closeDatabase());
+afterAll(async () => dbClose());
 
 describe('/users', () => {
   test('POST /register 201', async () => {

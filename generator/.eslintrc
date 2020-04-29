@@ -7,6 +7,11 @@
     "jest/globals": true,
     "browser": true
   },
+  "globals": {
+    "dbConnect": true,
+    "dbClose": true,
+    "dbClear": true
+  },
   "extends": [
     "eslint-config-airbnb-base",
     "plugin:import/errors",

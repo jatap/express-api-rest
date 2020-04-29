@@ -1,14 +1,9 @@
 /* eslint-disable no-return-await */
 import User from '../model';
-import {
-  connect,
-  closeDatabase,
-  clearDatabase,
-} from '../../../../../tests/db-handler';
 
 let user;
 
-beforeAll(async () => await connect());
+beforeAll(async () => await dbConnect());
 
 beforeEach(async () => {
   user = await User.create({
@@ -18,9 +13,9 @@ beforeEach(async () => {
   });
 });
 
-afterEach(async () => await clearDatabase());
+afterEach(async () => await dbClear());
 
-afterAll(async () => await closeDatabase());
+afterAll(async () => await dbClose());
 
 describe('methods', () => {
   describe('view', () => {

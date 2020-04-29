@@ -4,19 +4,14 @@ import HttpStatus from 'http-status-codes';
 import dotenv from 'dotenv/config';
 import { apiUri, version } from 'config';
 import app from '../../../../app';
-import {
-  connect,
-  closeDatabase,
-  clearDatabase,
-} from '../../../../../tests/db-handler';
 
 const apiRoot = `${apiUri}/${version}/users`;
 
-beforeAll(async () => connect());
+beforeAll(async () => dbConnect());
 
-afterEach(async () => clearDatabase());
+afterEach(async () => dbClear());
 
-afterAll(async () => closeDatabase());
+afterAll(async () => dbClose());
 
 describe('auth', () => {
   test('invalid authorization request header (unauthorized error)', async () => {

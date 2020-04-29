@@ -6,7 +6,6 @@ const mongod = new MongoMemoryServer();
 
 mongoose.Promise = Promise;
 
-global.dbCconnect = async () => {
 global.dbConnect = async () => {
   const uri = await mongod.getConnectionString();
 

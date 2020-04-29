@@ -1,12 +1,9 @@
 import request from 'supertest';
 import HttpStatus from 'http-status-codes';
-/* eslint-disable-next-line */
-import dotenv from 'dotenv/config';
-import { apiUri, version } from 'config';
 import app from '../../../../app';
 import User from '../model';
 
-const apiRoot = `${apiUri}/${version}/users`;
+const apiRoot = `${config.apiUri}/${config.version}/users`;
 
 beforeAll(async () => dbConnect());
 

@@ -10,7 +10,8 @@
   "globals": {
     "dbConnect": true,
     "dbClose": true,
-    "dbClear": true
+    "dbClear": true,
+    "config": true
   },
   "extends": [
     "eslint-config-airbnb-base",

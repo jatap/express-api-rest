@@ -1,0 +1,20 @@
+FROM node:12.16.3
+
+ARG USER=app
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+RUN adduser --disabled-password --gecos '' $USER
+COPY package.json /usr/src/app/package.json
+COPY package-lock.json /usr/src/app/package-lock.json
+RUN chown -R $USER:$USER /usr/src/app
+
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait /wait
+RUN chmod +x /wait
+
+USER $USER
+RUN npm install
+
+EXPOSE EEE
+
+CMD /wait && npm run dev:watch

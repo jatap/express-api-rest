@@ -11,7 +11,8 @@
     "dbConnect": true,
     "dbClose": true,
     "dbClear": true,
-    "config": true
+    "config": true,
+    "db": true
   },
   "extends": [
     "eslint-config-airbnb-base",

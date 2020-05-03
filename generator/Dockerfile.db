@@ -1,0 +1,7 @@
+FROM mongo:4.2.6
+
+COPY automation/db/provision.js /docker-entrypoint-initdb.d/
+
+EXPOSE BBB
+
+CMD [ "mongod" ]

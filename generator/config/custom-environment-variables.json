@@ -2,6 +2,7 @@
   "auth": {
     "salt": "HASH_SALT"
   },
+  "port": "PORT",
   "mongo": {
     "host": "MONGODB_HOST",
     "port": "MONGODB_PORT",

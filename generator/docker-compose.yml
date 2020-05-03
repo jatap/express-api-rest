@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    image: XXX-api
+    container_name: XXX-api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGODB_USERNAME=$MONGODB_USERNAME
+      - MONGODB_PASSWORD=$MONGODB_PASSWORD
+      - MONGODB_HOSTNAME=db
+      - MONGODB_PORT=$MONGODB_PORT
+      - MONGODB_DATABASE=$MONGODB_DATABASE
+      - WAIT_HOSTS=db:BBB
+    ports:
+      - "EEE:EEE"
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - db
+    networks:
+      - bridge
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.db
+    image: XXX-db
+    container_name: XXX-db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
+    ports:
+      - "BBB:BBB"
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - bridge
+
+networks:
+  bridge:
+    driver: bridge
+
+volumes:
+  dbdata:

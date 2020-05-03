@@ -1,4 +1,5 @@
-import http from 'http';
+import https from 'https';
+import fs from 'fs';
 import debugLib from 'debug';
 /* eslint-disable no-unused-vars */
 import dotenv from 'dotenv/config';
@@ -11,8 +12,11 @@ const debug = debugLib('XXX:server');
 const { port } = config;
 app.set('port', port);
 
-// Create HTTP server.
-const server = http.createServer(app);
+// Create HTTPS server.
+const server = https.createServer({
+  key: fs.readFileSync('./server/certs/server.key'),
+  cert: fs.readFileSync('./server/certs/server.cert'),
+}, app);
 
 const onError = (error) => {
   if (error.syscall !== 'listen') {

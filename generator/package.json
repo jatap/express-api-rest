@@ -38,7 +38,10 @@
     "test:watch": "jest --watch --updateSnapshot || true",
     "test:coverage": "jest --coverage --updateSnapshot || true",
     "test:coverage:open": "open reports/coverage/index.html",
-    "test:dev": "jest --watch --coverage --updateSnapshot || true"
+    "test:dev": "jest --watch --coverage --updateSnapshot || true",
+    "******": "<---------------- tests ------------------------------------->",
+    "docs": "apidoc -i server -o .docs",
+    "docs:open": "open .docs/index.html"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -67,6 +70,8 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/register": "^7.9.0",
     "@types/jest": "^25.1.4",
+    "apidoc": "^0.22.0",
+    "apidoc-markdown": "^5.0.2",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "^25.2.1",
     "commitizen": "^4.0.3",

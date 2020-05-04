@@ -36,7 +36,14 @@ export const login = async ({ bodymen: { body } }, res) => {
   }
 };
 
-export const profile = async (req, res) => res.send(req.user);
+export const profile = async (req, res) => {
+  try {
+    return res.send(req.user);
+  } catch (error) {
+    /* istanbul ignore next */
+    return res.status(HttpStatus.UNAUTHORIZED).json({ error: error.message });
+  }
+};
 
 export const logout = async (req, res) => {
   try {

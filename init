@@ -23,6 +23,7 @@ units=(".babelrc.js" \
   "Dockerfile.api" \
   "Dockerfile.db" \
   ".dockerignore" \
+  ".apidoc" \
   "jest.config.js" \
   "cz-customizable.js" \
   "nodemon.json" \
@@ -53,13 +54,12 @@ done
 
 echo -e "\e[1;32m\n>> Files has been successfully copied to ${PROJECT_PATH}\n"
 
-rewrites=("package.json" "README.md" "server/index.js" ".env.sample" "docker-compose.yml" "automation/db/provision.js" "Dockerfile.db" "Dockerfile.api")
+rewrites=("package.json" "README.md" "server/index.js" ".env.sample" "docker-compose.yml" "automation/db/provision.js" "Dockerfile.db" "Dockerfile.api" "apidoc.json")
 
 for rewrite in "${rewrites[@]}"
 do
   echo -e "\e[0;37mRewriting ${rewrite}..."
   sed -i '' -e "s|XXX|${PROJECT_NAME}|g" "${PROJECT_PATH}/${rewrite}"
-  # sed -i '' -e "s|ZZZ|${PROJECT_NAME}|g" "${PROJECT_PATH}/${rewrite}"
   sed -i '' -e "s|AAA|db|g" "${PROJECT_PATH}/${rewrite}"
   sed -i '' -e "s|BBB|27017|g" "${PROJECT_PATH}/${rewrite}"
   sed -i '' -e "s|CCC|keyUser|g" "${PROJECT_PATH}/${rewrite}"

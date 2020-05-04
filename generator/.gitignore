@@ -22,6 +22,7 @@ reports/
 npm-debug.log
 .netrwhist
 .env
+.docs
 
 # auto-generated tag files
 tags

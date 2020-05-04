@@ -1,0 +1,17 @@
+{
+  "name": "XXX",
+  "version": "1.0.0",
+  "description": "XXX / Express API REST",
+  "title": "XXX",
+  "url": "https://localhost:3000/api/v1.0",
+  "order": [
+    "HealthCheck",
+    "UserLogin",
+    "UserRegister",
+    "UserProfile",
+    "UserLogout",
+    "UserLogoutAll",
+    "UserPartialUpdate",
+    "UserFullUpdate"
+  ]
+}

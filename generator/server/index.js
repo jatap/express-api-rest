@@ -13,10 +13,13 @@ const { port } = config;
 app.set('port', port);
 
 // Create HTTPS server.
-const server = https.createServer({
-  key: fs.readFileSync('./server/certs/server.key'),
-  cert: fs.readFileSync('./server/certs/server.cert'),
-}, app);
+const server = https.createServer(
+  {
+    key: fs.readFileSync('./server/certs/server.key'),
+    cert: fs.readFileSync('./server/certs/server.cert'),
+  },
+  app,
+);
 
 const onError = (error) => {
   if (error.syscall !== 'listen') {

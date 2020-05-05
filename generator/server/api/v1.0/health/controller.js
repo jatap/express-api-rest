@@ -3,7 +3,6 @@ import HttpStatus from 'http-status-codes';
 const data = {
   status: 'available',
   version: 'v1.0',
-  date: new Date().toString(),
 };
 
 const getHealth = (req, res) => {

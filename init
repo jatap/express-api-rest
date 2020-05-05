@@ -23,7 +23,7 @@ units=(".babelrc.js" \
   "Dockerfile.api" \
   "Dockerfile.db" \
   ".dockerignore" \
-  ".apidoc" \
+  "apidoc.json" \
   "jest.config.js" \
   "cz-customizable.js" \
   "nodemon.json" \

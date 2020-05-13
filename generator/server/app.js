@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors';
 import compression from 'compression';
+import helmet from 'helmet';
 import HttpStatus from 'http-status-codes';
 import config from 'config';
 import { errorHandler as queryErrorHandler } from 'querymen';
@@ -26,6 +27,25 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(cors());
 app.use(compression());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'"],
+        styleSrc: ["'self'"],
+        imgSrc: ["'self'"],
+        mediaSrc: ["'self'"],
+        fontSrc: ["'self'"],
+        frameSrc: ["'self'"],
+        sandbox: ['allow-forms', 'allow-scripts'],
+        upgradeInsecureRequests: true,
+      },
+    },
+    permittedCrossDomainPolicies: true,
+    referrerPolicy: { policy: 'same-origin' },
+  }),
+);
 app.use(queryErrorHandler());
 app.use(bodyErrorHandler());
 

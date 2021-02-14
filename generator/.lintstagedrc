@@ -1,6 +1,6 @@
 {
   "src/**/*.js": [
     "prettier --write",
-    "npm run lint:fix"
+    "yarn lint:fix"
   ]
 }

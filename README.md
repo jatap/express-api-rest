@@ -13,8 +13,8 @@ Template to generate new Express API REST
 
 ## Requisites
 
-- Node 10.13.0
-- NVM 6.4.1
+- Node 14.x.x
+- NVM 7.x.x
 
 ## Packages
 
@@ -71,7 +71,3 @@ Support for debug in VSCode
 ## References
 
 - [Express API REST](https://bitbucket.org/jatap/express-api-rest)
-
-## TODO
-
-- [ ] Move to yeoman

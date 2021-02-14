@@ -23,7 +23,7 @@ flow-typed/
 npm-debug.log
 .netrwhist
 .env
-generator/package-lock.json
+generator/yarn.lock
 
 # auto-generated tag files
 tags

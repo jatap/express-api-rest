@@ -13,8 +13,8 @@ ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.7.3/wait
 RUN chmod +x /wait
 
 USER $USER
-RUN npm install
+RUN yarn install
 
 EXPOSE EEE
 
-CMD /wait && npm run dev:watch
+CMD /wait && yarn dev:watch

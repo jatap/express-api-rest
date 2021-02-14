@@ -39,10 +39,10 @@ app.use(
         fontSrc: ["'self'"],
         frameSrc: ["'self'"],
         sandbox: ['allow-forms', 'allow-scripts'],
-        upgradeInsecureRequests: true,
+        upgradeInsecureRequests: [],
       },
     },
-    permittedCrossDomainPolicies: true,
+    permittedCrossDomainPolicies: 'none',
     referrerPolicy: { policy: 'same-origin' },
   }),
 );
